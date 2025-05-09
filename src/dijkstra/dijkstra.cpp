@@ -2,7 +2,7 @@
 #include <utility>
 #include <vector>
 #include <iostream>
-#include "graphs.h"
+#include "../graphs.h"
 
 using distance = int;
 using steps = int;
