@@ -7,10 +7,10 @@
 typedef int vertex;
 typedef float weight;
 
-typedef struct {
-    vertex vertex; 
-    weight weight;
-} neighbor;
+// typedef struct {
+//     vertex vertex; 
+//     weight weight;
+// } neighbor;
 
 
 class graph
@@ -30,16 +30,14 @@ class graph
 class weighted_graph
 {
     public:
-    std::vector<std::vector<neighbor>> neighbors;
     weighted_graph(int num_vertices);
 
-    void addEdge(vertex v, vertex u, weight w);
+    std::vector<std::vector<std::pair<vertex, weight>>> adjacency_vector;
 
+    void addEdge(vertex v, vertex u, weight w);
     int size();
     int edges();
+    void print_graph();
 };
-
-
-
 
 #endif // !GRAPH_H

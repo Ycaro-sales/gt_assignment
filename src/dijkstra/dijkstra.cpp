@@ -10,6 +10,7 @@ using steps = int;
 using vertex_distance = std::pair<distance, vertex>;
 using steps_vector = std::vector<int>;
 
+/*
 std::tuple<std::vector<distance>, std::vector<steps>> dijkstra(weighted_graph& g, vertex source)
 {
     std::priority_queue<vertex_distance, std::vector<vertex_distance>, std::greater<vertex_distance>> Q;
@@ -49,3 +50,4 @@ int main(int argc, char** argv)
 {
     return 0;
 }
+*/

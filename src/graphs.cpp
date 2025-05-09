@@ -1,12 +1,14 @@
 #include <vector>
 #include <tuple>
 #include <utility>
+#include <iostream>
 #include "graphs.h"
 #include <queue>
 
 using namespace std;
 
-graph::graph(int num_vertices){
+graph::graph(int num_vertices)
+{
     adj = vector<vector<int>>(num_vertices, vector<int>());
 }
 
@@ -33,19 +35,46 @@ int graph::edges()
     return  n/2;
 }
 
-weighted_graph::weighted_graph(int num_vertices) {
-    neighbors = adjancency_vector(num_vertices, vector<pair<int,float>>());
+// WEIGHTED GRAPHS METHODS
+
+weighted_graph::weighted_graph(int num_vertices)
+{
+    adjacency_vector = vector<vector<pair<int, float>>> (num_vertices, vector<pair<int, float>>());
 }
 
 int weighted_graph::size()
 {
-    return neighbors.size();
+    return adjacency_vector.size();
+}
+
+int weighted_graph::edges()
+{
+    int e = 0;
+    for(auto v : adjacency_vector)
+    {
+        e += v.size();
+    }
+    // handshake theorem
+    return e/2;
 }
 
 void weighted_graph::addEdge(vertex v, vertex u, weight w)
 {
-    neighbors[v].push_back({u, w});
-    neighbors[u].push_back({v, w});
+    adjacency_vector[v].push_back({u, w});
+    adjacency_vector[u].push_back({v, w});
+}
+
+void weighted_graph::print_graph()
+{
+    for(int v = 0; v < adjacency_vector.size(); v++)
+    {
+        cout << v + 1 << ": ";
+        for(auto neighbor : adjacency_vector[v])
+        {
+            cout << neighbor.first + 1 << " (" << neighbor.second << ") | ";
+        }
+        cout << "\n";
+    }
 }
 
 // float weighted_graph::getEdgeWeight(vertex v, vertex u)
