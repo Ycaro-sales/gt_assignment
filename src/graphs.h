@@ -3,7 +3,6 @@
 
 #ifndef GRAPH_H
 
-
 typedef int vertex;
 typedef float weight;
 
@@ -11,7 +10,6 @@ typedef float weight;
 //     vertex vertex; 
 //     weight weight;
 // } neighbor;
-
 
 class graph
 {

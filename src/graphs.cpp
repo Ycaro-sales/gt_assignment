@@ -76,8 +76,3 @@ void weighted_graph::print_graph()
         cout << "\n";
     }
 }
-
-// float weighted_graph::getEdgeWeight(vertex v, vertex u)
-// {
-//
-// }

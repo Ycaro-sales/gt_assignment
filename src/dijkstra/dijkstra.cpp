@@ -10,7 +10,6 @@ using steps = int;
 using vertex_distance = std::pair<distance, vertex>;
 using steps_vector = std::vector<int>;
 
-/*
 std::tuple<std::vector<distance>, std::vector<steps>> dijkstra(weighted_graph& g, vertex source)
 {
     std::priority_queue<vertex_distance, std::vector<vertex_distance>, std::greater<vertex_distance>> Q;
@@ -31,13 +30,13 @@ std::tuple<std::vector<distance>, std::vector<steps>> dijkstra(weighted_graph& g
         vertex v = Q.top().first;
         Q.pop();
 
-        for (neighbor n : g.neighbors[v]){
-            distance dist_n = dists[v] + n.weight;
+        for (auto n : g.adjacency_vector[v]){
+            distance dist_n = dists[v] + n.second;
 
-            if (dist_n < dists[n.vertex] || dists[n.vertex] == -1){
-                dists[n.vertex] = dist_n;
-                prev[n.vertex] = v;
-                Q.push(vertex_distance(dist_n, n.vertex));
+            if (dist_n < dists[n.first] || dists[n.first] == -1){
+                dists[n.first] = dist_n;
+                prev[n.first] = v;
+                Q.push(vertex_distance(dist_n, n.first));
             }
         }
 
@@ -45,9 +44,3 @@ std::tuple<std::vector<distance>, std::vector<steps>> dijkstra(weighted_graph& g
 
     return {dists, prev};
 }
-
-int main(int argc, char** argv)
-{
-    return 0;
-}
-*/
