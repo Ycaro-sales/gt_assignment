@@ -82,6 +82,7 @@ void weighted_graph::print_graph()
 directed_graph::directed_graph(int num_vertex)
 {
     in_vector = vector<vector<int>> (num_vertex, vector<int>());
+    out_vector = vector<vector<int>> (num_vertex, vector<int>());
 }
 
 void directed_graph::addArc(vertex v, vertex u)
@@ -112,7 +113,7 @@ void directed_graph::print_graph()
         cout << v + 1 << ": ";
         for(auto neighbor : out_vector[v])
         {
-            cout << neighbor << " | ";
+            cout << neighbor + 1 << " | ";
         }
         cout << "\n";
     }

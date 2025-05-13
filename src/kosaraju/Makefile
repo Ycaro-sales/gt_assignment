@@ -1,19 +1,20 @@
-TARGET=dijkstra.bin
-ALG=dijkstra.cpp
-ALG_HEADER=dijkstra.h
-OBJ=dijkstra.o
+TARGET=../../bin/kosaraju.bin
+ALG=kosaraju.cpp
+ALG_HEADER=kosaraju.h
+OBJ=kosaraju.o
 CXX=g++-12
 
-dijkstra.bin: $(OBJ) graphs.o
+../../bin/kosaraju.bin: $(OBJ) graphs.o
 	$(CXX) -o $(TARGET) main.cpp $(OBJ) graphs.o
 
 graphs.o: ../graphs.cpp ../graphs.h
 	$(CXX) -c ../graphs.cpp
 
-dijkstra.o: $(ALG) $(ALG_HEADER) graphs.o
+$(OBJ): $(ALG) $(ALG_HEADER) graphs.o
 	$(CXX) -c $(ALG) graphs.o
 	
 clean:
 	rm $(TARGET)
 	rm $(OBJ)
 	rm graphs.o
+	clear
