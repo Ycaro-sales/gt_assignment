@@ -38,4 +38,18 @@ class weighted_graph
     void print_graph();
 };
 
+class directed_graph
+{
+    public:
+    directed_graph(int num_vertex);
+
+    std::vector<std::vector<vertex>> in_vector;
+    std::vector<std::vector<vertex>> out_vector;
+
+    void addArc(vertex v, vertex u);
+    int size();
+    int arcs();
+    void print_graph();
+};
+
 #endif // !GRAPH_H
