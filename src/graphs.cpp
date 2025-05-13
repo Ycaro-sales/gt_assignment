@@ -76,3 +76,44 @@ void weighted_graph::print_graph()
         cout << "\n";
     }
 }
+
+// DIRECTED GRAPH METHODS
+
+directed_graph::directed_graph(int num_vertex)
+{
+    in_vector = vector<vector<int>> (num_vertex, vector<int>());
+}
+
+void directed_graph::addArc(vertex v, vertex u)
+{
+    out_vector[v].push_back(u);
+    in_vector[u].push_back(v);
+}
+
+int directed_graph::size()
+{
+    return out_vector.size();
+}
+
+int directed_graph::arcs()
+{
+    int a = 0;
+    for(auto v : out_vector)
+    {
+        a += v.size();
+    }
+    return a;
+}
+
+void directed_graph::print_graph()
+{
+    for(int v = 0; v < out_vector.size(); v++)
+    {
+        cout << v + 1 << ": ";
+        for(auto neighbor : out_vector[v])
+        {
+            cout << neighbor << " | ";
+        }
+        cout << "\n";
+    }
+}
