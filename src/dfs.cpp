@@ -1,4 +1,7 @@
+#include <vector>
 #include "graphs.h"
+
+using namespace std;
 
 void graph::DFSrec(vector<int>& pre, int v)
 {
@@ -23,8 +26,6 @@ void graph::DFS()
 
     for (int v=0; v<n; v++) {
         if (pre[v] == -1)
-            DFSrec(pre,v);
+            DFSrec(pre, v);
     }
-
 }
-

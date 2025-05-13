@@ -22,6 +22,8 @@ class graph
     int size();
     int edges();
 
+    void DFS();
+    void DFSrec(std::vector<vertex>& pre, vertex v);
 
 };
 

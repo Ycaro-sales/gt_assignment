@@ -5,7 +5,8 @@
 
 using namespace std;
 
-void show_help(){
+void show_help()
+{
     cout << "Usage: ./dijkstra.bin -f <input_file> [OPTIONS]\n\n";
     cout << "Options            Description\n";
     cout << "-h                 Shows this help.\n";
@@ -14,12 +15,15 @@ void show_help(){
     cout << "-i <vertex>        Defines initial vertex as <vertex>. Default iniial vertex is 1";
 }
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{
     int help = 0, v0 = 1, opterr = 0, c;
     char *input_file = NULL, *output_file = NULL; 
 
-    while ((c = getopt(argc, argv, "ho:f:i:")) != -1) {
-        switch (c) {
+    while ((c = getopt(argc, argv, "ho:f:i:")) != -1)
+    {
+        switch (c)
+        {
             case 'h':
                 help = 1; break;
             case 'o':
