@@ -46,7 +46,6 @@ void union_find::unite(int x, int y)
 weighted_graph_vector::weighted_graph_vector(int n_vertices, int m_edges)
 {
     vertices = n_vertices;
-    edges.resize(m_edges);
 }
 
 void weighted_graph_vector::addEdge(vertex v, vertex u, weight w)
