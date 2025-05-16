@@ -46,13 +46,12 @@ int main(int argc, char *argv[])
     for (int i = 0; i < m; i++)
     {
         fscanf(input, "%d%d%d", &v, &u, &w);
-        std::cout << v << " " << u << " " << w << "\n";
         g.addEdge(v, u, w);
     }
 
     fclose(input);
 
-    g.print_graph();
+    weighted_graph_vector MST = kruskal(g);
 
     return 0;
 }
