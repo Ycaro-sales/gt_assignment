@@ -8,27 +8,23 @@ typedef float weight;
 typedef struct {
     vertex v1;
     vertex v2;
-} edge;
-
-typedef struct {
-    edge e;
-    weight w;
+    weight edge_weight;
 } weighted_edge;
 
 class weighted_graph_vector
 {
     public:
-    weighted_graph_vector(int size);
+    weighted_graph_vector(int n_vertices, int m_edges);
+    int vertices;
 
     std::vector<weighted_edge> edges;
 
     void addEdge(vertex v, vertex u, weight w);
     int size_edges();
-    int size_vertices();
     int graph_weight();
     void print_graph();
     void print_edges();
-    bool edge_compare(weighted_edge vu, weighted_edge xy);
+    // bool edge_compare(weighted_edge const& vu, weighted_edge const& xy);
 };
 
 class union_find
@@ -44,5 +40,6 @@ class union_find
     void unite(int x, int y);
 };
 
+weighted_graph_vector kruskal(weighted_graph_vector g);
 
 #endif

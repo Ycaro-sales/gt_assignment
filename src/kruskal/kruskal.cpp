@@ -1,4 +1,5 @@
 #include "kruskal.h"
+#include <algorithm>
 #include <iostream>
 
 // UNION-FIND METHODS
@@ -42,19 +43,18 @@ void union_find::unite(int x, int y)
 
 // WEIGHTED GRAPH VECTOR METHODS
 
-weighted_graph_vector::weighted_graph_vector(int size)
+weighted_graph_vector::weighted_graph_vector(int n_vertices, int m_edges)
 {
-    edges.resize(size);
+    vertices = n_vertices;
+    edges.resize(m_edges);
 }
 
 void weighted_graph_vector::addEdge(vertex v, vertex u, weight w)
 {
-    edge e;
-    e.v1 = v;
-    e.v2 = u;
     weighted_edge we;
-    we.e = e;
-    we.w = w;
+    we.v1 = v;
+    we.v2 = u;
+    we.edge_weight = w;
     edges.push_back(we);
 }
 
@@ -68,7 +68,7 @@ int weighted_graph_vector::graph_weight()
     int total_weight = 0;
     for (weighted_edge we : edges)
     {
-        total_weight = total_weight + we.w;
+        total_weight = total_weight + we.edge_weight;
     }
     return total_weight;
 }
@@ -77,7 +77,7 @@ void weighted_graph_vector::print_graph()
 {
     for(weighted_edge we : edges)
     {
-        std::cout << "(" << we.e.v1 << "," << we.e.v2 << ") " << we.w << " ";
+        std::cout << "(" << we.v1 << "," << we.v2 << ") " << we.edge_weight << " ";
     }
     std::cout << std::endl;
 }
@@ -86,12 +86,44 @@ void weighted_graph_vector::print_edges()
 {
     for(weighted_edge we : edges)
     {
-        std::cout << "(" << we.e.v1 << "," << we.e.v2 << ") ";
+        std::cout << "(" << we.v1 << "," << we.v2 << ") ";
     }
     std::cout << std::endl;
 }
 
-bool weighted_graph_vector::edge_compare(weighted_edge we1, weighted_edge we2)
+bool edge_compare(weighted_edge const& we1, weighted_edge const& we2)
 {
-    return we1.w < we2.w;
+    return we1.edge_weight < we2.edge_weight;
+}
+
+// KRUSKAL
+
+weighted_graph_vector kruskal(weighted_graph_vector g)
+{
+    // creates MST
+    weighted_graph_vector MST(g.vertices, g.vertices-1);
+    
+    // creates UNION-FIND
+    union_find un(g.vertices);
+
+    for (int v = 0; v < g.vertices; v++)
+    {
+        un.make_set(v);
+    }
+
+    std::sort(g.edges.begin(), g.edges.end(), &edge_compare);
+
+    g.print_graph();
+
+    for (weighted_edge we : g.edges)
+    {
+        if (un.find(we.v1) != un.find(we.v2))
+        {
+            MST.addEdge(we.v1, we.v2, we.edge_weight);
+            un.unite(we.v1, we.v2);
+        }
+    }
+
+    MST.print_edges();
+    return MST;
 }
