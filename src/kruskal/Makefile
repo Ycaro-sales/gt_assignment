@@ -5,7 +5,7 @@ OBJ=kruskal.o
 CXX=g++-12
 
 ../../bin/kruskal.bin: $(OBJ) graphs.o main.cpp
-	$(CXX) -o $(TARGET) main.cpp $(OBJ) graphs.o
+	$(CXX) -g -o $(TARGET) main.cpp $(OBJ) graphs.o
 
 graphs.o: ../graphs.cpp ../graphs.h
 	$(CXX) -c ../graphs.cpp
@@ -18,3 +18,10 @@ clean:
 	rm $(OBJ)
 	rm graphs.o
 	clear
+
+test:
+	./$(TARGET) -f ../../tests/Bat1/instances/exemp.mtx
+
+debug:
+	gdb ./$(TARGET) -f ../../tests/Bat1/instances/exemp.mtx
+
