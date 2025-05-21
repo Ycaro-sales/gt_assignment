@@ -4,8 +4,8 @@ ALG_HEADER=kruskal.h
 OBJ=kruskal.o
 CXX=g++-12
 
-../../bin/kruskal.bin: $(OBJ) graphs.o main.cpp
-	$(CXX) -g -o $(TARGET) main.cpp $(OBJ) graphs.o
+./../../bin/kruskal.bin: $(OBJ) graphs.o main.cpp
+	$(CXX) -g -o ./$(TARGET) main.cpp $(OBJ) graphs.o
 
 graphs.o: ../graphs.cpp ../graphs.h
 	$(CXX) -g -c ../graphs.cpp

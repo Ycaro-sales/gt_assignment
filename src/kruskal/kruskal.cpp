@@ -87,12 +87,11 @@ void weighted_graph_vector::print_edges()
     {
         std::cout << "(" << we.v1 << "," << we.v2 << ") ";
     }
-    std::cout << std::endl;
 }
 
 bool edge_compare(weighted_edge const& we1, weighted_edge const& we2)
 {
-    return we1.edge_weight <= we2.edge_weight;
+    return we1.edge_weight < we2.edge_weight;
 }
 
 // KRUSKAL
@@ -116,10 +115,12 @@ weighted_graph_vector kruskal(weighted_graph_vector g)
 
     for (weighted_edge we : g.edges)
     {
-        if (un.find(we.v1 - 1) != un.find(we.v2 - 1))
+        int set_v1 = un.find(we.v1 - 1);
+        int set_v2 = un.find(we.v2 - 1);
+        if (set_v1 != set_v2)
         {
             MST.addEdge(we.v1, we.v2, we.edge_weight);
-            un.unite(we.v1 - 1, we.v2 - 1);
+            un.unite(set_v1, set_v2);
         }
     }
 
