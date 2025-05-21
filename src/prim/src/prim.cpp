@@ -75,9 +75,5 @@ std::tuple<std::vector<cost>, std::vector<parent>>  prim(weighted_graph& g, vert
 
     }
 
-    print_tree(prev);
-    print_costs(costs);
-    print_total_cost(costs);
-
     return std::make_tuple(costs, prev);
 }

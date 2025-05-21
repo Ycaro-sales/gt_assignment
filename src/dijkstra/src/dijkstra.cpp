@@ -23,6 +23,7 @@ std::vector<distance> dijkstra(weighted_graph& g, vertex source)
 
     std::vector<distance> dists(g.size(), -1);
     std::vector<int> prev(g.size(), -1);
+    std::vector<bool> done(g.size(), false);
 
     int cnt = 0;
 
@@ -36,11 +37,12 @@ std::vector<distance> dijkstra(weighted_graph& g, vertex source)
     {
         vertex v = Q.top().second;
         Q.pop();
-
+        done[v] = true;
+        
         for (auto n : g.adjacency_vector[v]){
             distance dist_n = dists[v] + n.w;
 
-            if (dist_n < dists[n.v] || dists[n.v] == -1){
+            if (done[n.v] == false && (dist_n < dists[n.v] || dists[n.v] == -1)){
                 dists[n.v] = dist_n;
                 prev[n.v] = v;
                 Q.push(source_distance(dist_n, n.v));

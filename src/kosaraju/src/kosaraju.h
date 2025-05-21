@@ -1,7 +1,7 @@
 #ifndef KOSARAJU_H
 
 #include <vector>
-#include "../graphs.h"
+#include "graphs.h"
 
 void DFSrec_reverse(directed_graph g, std::vector<bool> visited, std::vector<int> pos, int v);
 std::vector<int> DFS_reverse(directed_graph g);

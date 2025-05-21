@@ -1,27 +1,31 @@
-TARGET=../../bin/kruskal.bin
-ALG=kruskal.cpp
-ALG_HEADER=kruskal.h
-OBJ=kruskal.o
-CXX=g++-12
+TEST_DIR = ../../tests/Bat1
+TEST_SCRIPT=Bat1.sh
 
-./../../bin/kruskal.bin: $(OBJ) graphs.o main.cpp
-	$(CXX) -g -o ./$(TARGET) main.cpp $(OBJ) graphs.o
+BIN=bin
 
-graphs.o: ../graphs.cpp ../graphs.h
-	$(CXX) -g -c ../graphs.cpp
+TARGET_EXEC = $(shell basename $(CURDIR))
 
-$(OBJ): $(ALG) $(ALG_HEADER) graphs.o
-	$(CXX) -g -c $(ALG) graphs.o
-	
+SRCS := $(wildcard src/*.cpp)
+OBJS := $(foreach o, $(SRCS), $(shell basename $(o)).o)
+CXX=g++
+
+$(BIN)/$(TARGET_EXEC): $(foreach o,$(OBJS), $(BIN)/$(shell basename $(o)))
+	echo $(foreach o,$(OBJS), $(BIN)/$(shell basename $(o)))
+	$(CXX) -g -ggdb $^ -o $@
+
+$(BIN)/%.cpp.o: src/%.cpp
+	$(CXX) -g -ggdb -c $< -o $@
+
+.PHONY: clean
 clean:
-	rm $(TARGET)
-	rm $(OBJ)
-	rm graphs.o
-	clear
+	rm -f $(BIN)/*
 
-test:
-	./$(TARGET) -f ./../../tests/Bat1/instances/johnson8-2-4.mtx
+run: clean $(BIN)/$(TARGET_EXEC)  
+	./$(BIN)/$(TARGET_EXEC) -f $(TEST_DIR)/instances/exemp.mtx
 
-debug:
-	gdb ./$(TARGET)
+test: clean $(BIN)/$(TARGET_EXEC)
+	(cd $(TEST_DIR) && ./$(TEST_SCRIPT))
+
+debug: clean $(BIN)/$(TARGET_EXEC)
+	gdb --args ./$(BIN)/$(TARGET_EXEC) -f ../../tests/Bat1/instances/exemp.mtx
 

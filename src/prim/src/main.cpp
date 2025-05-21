@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <iostream>
 #include <unistd.h>
@@ -23,7 +22,7 @@ int main(int argc, char* argv[])
     int solution = 0, help = 0, v0 = 1, opterr = 0, c;
     char *input_file = NULL, *output_file = NULL; 
 
-    while ((c = getopt(argc, argv, "hso:f:i:")) != -1)
+    while ((c = getopt(argc, argv, "ho:f:i:s")) != -1)
     {
         switch (c)
         {
@@ -78,9 +77,11 @@ int main(int argc, char* argv[])
 
     // g.print_graph();
     auto [costs,prev] = prim(g, v0);
-    print_costs(costs);
+
     if(solution == true){
         print_tree(prev);
+    } else {
+        print_total_cost(costs);
     }
 
     return 0;
