@@ -53,5 +53,7 @@ int main(int argc, char *argv[])
 
     weighted_graph_vector MST = kruskal(g);
 
+    std::cout << MST.graph_weight() << std::endl;
+
     return 0;
 }
