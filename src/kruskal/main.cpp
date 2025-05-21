@@ -9,14 +9,15 @@ void show_help()
     std::cout << "Options            Description\n";
     std::cout << "-h                 Shows this help.\n";
     std::cout << "-o <output_file>   Redirects output to <output_file>. Default is standard output.\n";
+    std::cout << "-s                 Shows solution.\n";
 }
 
 int main(int argc, char *argv[])
 {
-    int help = 0, opterr = 0, c;
+    int help = 0, solution = 0, opterr = 0, c;
     char *input_file = NULL, *output_file = NULL;
 
-    while((c = getopt(argc, argv, "ho:f:")) != -1)
+    while((c = getopt(argc, argv, "ho:f:s")) != -1)
     {
         switch(c)
         {
@@ -26,6 +27,8 @@ int main(int argc, char *argv[])
                 output_file = optarg; break;
             case 'f':
                 input_file = optarg; break;
+            case 's':
+                solution = 1; break;
         }
     }
 
@@ -53,7 +56,12 @@ int main(int argc, char *argv[])
 
     weighted_graph_vector MST = kruskal(g);
 
-    std::cout << MST.graph_weight() << std::endl;
+
+    if (solution == 1) {
+        MST.print_edges();
+    } else {
+        std::cout << MST.graph_weight() << std::endl;
+    }
 
     return 0;
 }
