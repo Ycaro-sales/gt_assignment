@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Binários
-bin_folder=../../bin
-kosaraju=$bin_folder/kosaraju.bin
-prim=$bin_folder/prim.bin
-kruskal=$bin_folder/kruskal.bin
-dijkstra=$bin_folder/dijkstra.bin
+main_folder=../../src
+kosaraju=$main_folder/kosaraju/bin/kosaraju
+prim=$main_folder/prim/bin/prim
+kruskal=$main_folder/kruskal/bin/kruskal
+dijkstra=$main_folder/dijkstra/bin/dijkstra
 
 echo "Testando algoritmo de Kosaraju"
 for i in instances_scc/*.dat

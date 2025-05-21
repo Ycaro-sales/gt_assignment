@@ -36,7 +36,7 @@ int graph::edges()
 
 weighted_graph::weighted_graph(int num_vertices)
 {
-    adjacency_vector = vector<vector<neighbor>>(num_vertices, vector<neighbor>());
+    adjacency_vector = vector<vector<neighbor>>(num_vertices, vector<neighbor>(0));
 }
 
 int weighted_graph::size()

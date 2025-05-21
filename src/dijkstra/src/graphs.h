@@ -2,6 +2,7 @@
 #include <utility>
 
 #ifndef GRAPH_H
+#define GRAPH_H
 
 typedef int vertex;
 typedef float weight;

@@ -1,19 +1,31 @@
-TARGET=dijkstra.bin
-ALG=dijkstra.cpp
-ALG_HEADER=dijkstra.h
-OBJ=dijkstra.o
-CXX=g++-12
+TEST_DIR = ../../tests/Bat1
+TEST_SCRIPT=Bat1.sh
 
-dijkstra.bin: $(OBJ) graphs.o
-	$(CXX) -o $(TARGET) main.cpp $(OBJ) graphs.o
+BIN=bin
 
-graphs.o: ../graphs.cpp ../graphs.h
-	$(CXX) -c ../graphs.cpp
+TARGET_EXEC = $(shell basename $(CURDIR))
 
-dijkstra.o: $(ALG) $(ALG_HEADER) graphs.o
-	$(CXX) -c $(ALG) graphs.o
-	
+SRCS := $(wildcard src/*.cpp)
+OBJS := $(foreach o, $(SRCS), $(shell basename $(o)).o)
+CXX=g++
+
+$(BIN)/$(TARGET_EXEC): $(foreach o,$(OBJS), $(BIN)/$(shell basename $(o)))
+	echo $(foreach o,$(OBJS), $(BIN)/$(shell basename $(o)))
+	$(CXX) -g -ggdb $^ -o $@
+
+$(BIN)/%.cpp.o: src/%.cpp
+	$(CXX) -g -ggdb -c $< -o $@
+
+.PHONY: clean
 clean:
-	rm $(TARGET)
-	rm $(OBJ)
-	rm graphs.o
+	rm -f $(BIN)/*
+
+run: clean $(BIN)/$(TARGET_EXEC)  
+	./$(BIN)/$(TARGET_EXEC) -f $(TEST_DIR)/instances/exemp.mtx
+
+test: clean $(BIN)/$(TARGET_EXEC)
+	(cd $(TEST_DIR) && ./$(TEST_SCRIPT))
+
+debug: clean $(BIN)/$(TARGET_EXEC)
+	gdb --args ./$(BIN)/$(TARGET_EXEC) -f ../../tests/Bat1/instances/exemp.mtx
+

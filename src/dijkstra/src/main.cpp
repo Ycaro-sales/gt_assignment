@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <iostream>
 #include <unistd.h>
-#include "../graphs.h"
+#include <vector>
+#include "graphs.h"
+#include "dijkstra.h"
 
 using namespace std;
 
@@ -71,7 +73,9 @@ int main(int argc, char* argv[])
 
     fclose(input);
 
-    g.print_graph();
+    // g.print_graph();
+    auto distances = dijkstra(g, v0);
+    print_distances(distances);
 
     return 0;
 }
