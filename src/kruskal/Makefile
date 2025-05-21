@@ -8,10 +8,10 @@ CXX=g++-12
 	$(CXX) -g -o $(TARGET) main.cpp $(OBJ) graphs.o
 
 graphs.o: ../graphs.cpp ../graphs.h
-	$(CXX) -c ../graphs.cpp
+	$(CXX) -g -c ../graphs.cpp
 
 $(OBJ): $(ALG) $(ALG_HEADER) graphs.o
-	$(CXX) -c $(ALG) graphs.o
+	$(CXX) -g -c $(ALG) graphs.o
 	
 clean:
 	rm $(TARGET)
@@ -20,8 +20,8 @@ clean:
 	clear
 
 test:
-	./$(TARGET) -f ../../tests/Bat1/instances/exemp.mtx
+	./$(TARGET) -f ./../../tests/Bat1/instances/johnson8-2-4.mtx
 
 debug:
-	gdb ./$(TARGET) -f ../../tests/Bat1/instances/exemp.mtx
+	gdb ./$(TARGET)
 

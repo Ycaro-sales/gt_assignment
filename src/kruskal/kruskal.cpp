@@ -22,7 +22,7 @@ int union_find::find(int x)
     {
         parent[x] = union_find::find(parent[x]);
     }
-    return x;
+    return parent[x];
 }
 
 void union_find::unite(int x, int y)
@@ -92,7 +92,7 @@ void weighted_graph_vector::print_edges()
 
 bool edge_compare(weighted_edge const& we1, weighted_edge const& we2)
 {
-    return we1.edge_weight < we2.edge_weight;
+    return we1.edge_weight <= we2.edge_weight;
 }
 
 // KRUSKAL
@@ -112,17 +112,17 @@ weighted_graph_vector kruskal(weighted_graph_vector g)
 
     std::sort(g.edges.begin(), g.edges.end(), &edge_compare);
 
-    g.print_graph();
+    // g.print_graph();
 
     for (weighted_edge we : g.edges)
     {
-        if (un.find(we.v1) != un.find(we.v2))
+        if (un.find(we.v1 - 1) != un.find(we.v2 - 1))
         {
             MST.addEdge(we.v1, we.v2, we.edge_weight);
-            un.unite(we.v1, we.v2);
+            un.unite(we.v1 - 1, we.v2 - 1);
         }
     }
 
-    MST.print_edges();
+    // MST.print_edges();
     return MST;
 }
