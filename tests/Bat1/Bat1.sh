@@ -6,6 +6,7 @@ kosaraju=$main_folder/kosaraju/bin/kosaraju
 prim=$main_folder/prim/bin/prim
 kruskal=$main_folder/kruskal/bin/kruskal
 dijkstra=$main_folder/dijkstra/bin/dijkstra
+floyd_warshall=$main_folder/floyd_warshall/bin/floyd_warshall
 
 echo "Testando algoritmo de Kosaraju"
 for i in instances_scc/*.dat
@@ -70,6 +71,23 @@ do
 
 	j=$(basename $i);
 	diff -w temp ./sp/$j > /dev/null ;
+	if [ $? -eq 0 ]; then
+		echo -e "\e[32mOK\e[0m"
+	else
+		echo -e "\e[31mErro\e[0m";
+	fi
+	rm temp;
+
+done
+
+echo "Testando algoritmo de Floyd Warshall"
+for i in instances_negw/*.mtx
+do
+	echo -e "\e[33mInstância $i\e[0m";
+	$dijkstra -f $i > temp;
+
+	j=$(basename $i);
+	diff -w temp ./sp_negw/$j > /dev/null ;
 	if [ $? -eq 0 ]; then
 		echo -e "\e[32mOK\e[0m"
 	else
