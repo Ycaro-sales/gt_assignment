@@ -54,7 +54,13 @@ int main(int argc, char *argv[])
 
     vector<int> post_order = DFS_reverse(g);
 
-    DFS_scc(g, post_order);
+    if (output_file != NULL) {
+        ofstream output(output_file);
+        DFS_scc(g, post_order, output);
+        output.close();
+    } else {
+        DFS_scc(g, post_order, cout);
+    }
 
     return 0;
 }

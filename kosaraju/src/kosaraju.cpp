@@ -39,20 +39,20 @@ vector<int> DFS_reverse(directed_graph g)
     return pos;
 }
 
-void DFSrec_scc(directed_graph g, vector<int> &visited, int vertex)
+void DFSrec_scc(directed_graph g, vector<int> &visited, int vertex, ostream& out)
 {
     visited[vertex] = 1;
-    cout << vertex + 1;
+    out << vertex + 1;
     for(auto neighbour : g.out_vector[vertex])
     {
         if (visited[neighbour] == 0) {
-            cout << " ";
-            DFSrec_scc(g, visited, neighbour);
+            out << " ";
+            DFSrec_scc(g, visited, neighbour, out);
         }
     }
 }
 
-void DFS_scc(directed_graph g, vector<int> order)
+void DFS_scc(directed_graph g, vector<int> order, ostream& out)
 {
     vector<int> visited(g.size(), 0);
 
@@ -60,8 +60,8 @@ void DFS_scc(directed_graph g, vector<int> order)
     {
         if(visited[order[v]] == 0)
         {
-            DFSrec_scc(g, visited, order[v]);
-            cout << endl;
+            DFSrec_scc(g, visited, order[v], out);
+            out << endl;
         }
     }
 }
