@@ -7,7 +7,7 @@
 #include "graphs.h"
 #include <string>
 
-using distance = int;
+using distance = long long int;
 using distances = std::vector<std::vector<distance>>;
 
 using steps = int;

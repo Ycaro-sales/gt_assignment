@@ -36,6 +36,10 @@ void weighted_graph::addEdge(vertex v, vertex u, weight w)
     adjacency_matrix[u][v] = w;
 }
 
+void weighted_graph::addArc(vertex out, vertex in, weight w)
+{
+    adjacency_matrix[out][in] = w;
+}
 void weighted_graph::print_graph()
 {
     for(int v = 0; v < adjacency_matrix.size(); v++)

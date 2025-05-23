@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
     float w;
     for (int i = 0; i < m; i++) {
         input >> v >> u >> w;
-        g.addEdge(v-1, u-1, w);
+        g.addArc(v-1, u-1, w);
     }
 
     input.close();

@@ -4,8 +4,8 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-typedef int vertex;
-typedef float weight;
+using vertex = long long int;
+using weight = long long int;
 
 class weighted_graph
 {
@@ -15,6 +15,7 @@ class weighted_graph
     std::vector<std::vector<vertex>> adjacency_matrix;
 
     void addEdge(vertex v, vertex u, weight w);
+    void addArc(vertex out, vertex in, weight w);
     int size();
     int edges();
     void print_graph();

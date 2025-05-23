@@ -9,7 +9,7 @@
 
 #define infinity std::numeric_limits<vertex>::max()
 
-using distance = int;
+using distance = long long int;
 using distances = std::vector<std::vector<distance>>;
 using steps = int;
 using steps_vector = std::vector<int>;
