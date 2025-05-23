@@ -46,12 +46,12 @@ for i in range(10):
     if i <= 4:
         n = random.randint(5, 15)
         edges = create_graph_intances(n)
-        chance = random.randint(10, 20)
+        chance = random.randint(10, 60)
         edges = [item for item in edges if (random.randint(1, 100) >= chance)]
     else:
         n = random.randint(20, 100)
         edges = create_graph_intances(n)
-        chance = random.randint(10, 30)
+        chance = random.randint(20, 30)
         edges = [item for item in edges if (random.randint(1, 100) >= chance)]
 
     with open(f"instance_{i + 1}.mtx", "w") as f:
@@ -60,7 +60,7 @@ for i in range(10):
 for i in range(10):
     n = random.randint(100, 200)
     edges = create_graph_intances(n)
-    chance = random.randint(10, 30)
+    chance = random.randint(20, 30)
     edges = [item for item in edges if (random.randint(1, 100) >= chance)]
 
     with open(f"instance_{i + 1 + 10}.mtx", "w") as f:
