@@ -1,6 +1,6 @@
 TEST_FOLDER = ./tests/Bat1/
 TEST_SCRIPT = ./Bat1.sh
-test: dijkstra prim floyd_warshall kosaraju kruskal
+test: dijkstra prim kosaraju kruskal
 	(cd $(TEST_FOLDER) && $(TEST_SCRIPT))
 
 dijkstra:

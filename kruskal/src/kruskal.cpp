@@ -87,9 +87,8 @@ std::string weighted_graph_vector::print_edges()
     std::string edges_str = "";
     for(weighted_edge we : edges)
     {
-        edges_str += "(" + std::to_string(we.v1) + "," + std::to_string(we.v2) + ") ";
+        edges_str += "(" + std::to_string(we.v1 + 1) + "," + std::to_string(we.v2 + 1) + ") ";
     }
-    std::cout << edges_str;
     return edges_str;
 }
 
@@ -119,8 +118,8 @@ weighted_graph_vector kruskal(weighted_graph_vector g)
 
     for (weighted_edge we : g.edges)
     {
-        int set_v1 = un.find(we.v1 - 1);
-        int set_v2 = un.find(we.v2 - 1);
+        int set_v1 = un.find(we.v1);
+        int set_v2 = un.find(we.v2);
         if (set_v1 != set_v2)
         {
             MST.addEdge(we.v1, we.v2, we.edge_weight);

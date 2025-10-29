@@ -14,7 +14,7 @@ $(BIN)/$(TARGET_EXEC): $(foreach o,$(OBJS), $(BIN)/$(shell basename $(o)))
 	$(CXX) -g -ggdb $^ -o $@
 
 $(BIN)/%.cpp.o: src/%.cpp
-	$(CXX) -g -ggdb -c $< -o $@
+	$(CXX) -g -std=c++11 -ggdb -c $< -o $@
 
 .PHONY: clean
 clean:
@@ -22,6 +22,9 @@ clean:
 
 run: clean $(BIN)/$(TARGET_EXEC)  
 	./$(BIN)/$(TARGET_EXEC) -f $(TEST_DIR)/instances/exemp.mtx
+
+run_edges: clean $(BIN)/$(TARGET_EXEC)  
+	./$(BIN)/$(TARGET_EXEC) -s -f $(TEST_DIR)/instances/exemp.mtx
 
 test: clean $(BIN)/$(TARGET_EXEC)
 	(cd $(TEST_DIR) && ./$(TEST_SCRIPT))
