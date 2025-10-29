@@ -29,7 +29,7 @@ do
 	echo -e "\e[33mInstância $i\e[0m";
 	val=$($kruskal -f $i);
 	correto=$(grep $i gabarito_agm.txt | cut -d ' ' -f 2);
-	[ $val -eq $correto ] && echo -e "Custo \e[32mOK\e[0m" || echo  -e "\e[31mCusto incorreto\e[0m";
+	[[ $val == $correto ]] && echo -e "Custo \e[32mOK\e[0m" || echo  -e "\e[31mCusto incorreto\e[0m";
 
 	$kruskal -f $i -s | sed -e 's/ /\n/g' -e 's/,/ /g' -e 's/[()]//g' | ./agm $i
 	if [ $? -eq 0 ]; then
