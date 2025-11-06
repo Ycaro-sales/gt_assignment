@@ -1,4 +1,4 @@
-# Lista 2 - Teoria dos Grafos - UFAL(2024.2)
+# Lista 2 - Teoria dos Grafos - UFAL(2025.1)
 Alunos: Ycaro Bruno Souza Sales
 
 ### Descrição
