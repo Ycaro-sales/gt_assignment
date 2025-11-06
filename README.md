@@ -1,5 +1,5 @@
 # Lista 2 - Teoria dos Grafos - UFAL(2025.1)
-Alunos: Ycaro Bruno Souza Sales
+Aluno: Ycaro Bruno Souza Sales
 
 ### Descrição
 Implementação dos seguintes algoritmos de grafos em c++:
